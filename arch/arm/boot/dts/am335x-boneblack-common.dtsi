@@ -35,10 +35,76 @@
 			AM33XX_PADCONF(AM335X_PIN_GPMC_A11, PIN_OUTPUT_PULLDOWN, MUX_MODE7) /* gpmc_a11.GPIO1_27 */
 		>;
 	};
+    
+	ehrpwm0a_pins: pinmux_ehrpwm0a_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_OUTPUT, MUX_MODE3) /* UART2_RXD.ehrpwm0A */
+		>;
+	};
+
+	ehrpwm0b_pins: pinmux_ehrpwm0b_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_OUTPUT, MUX_MODE3) /* UART2_TXD.ehrpwm0B */
+		>;
+	};
+
+	ehrpwm1a_pins: pinmux_ehrpwm1a_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_OUTPUT, MUX_MODE2) /* UART3_CTSN.ehrpwm1A */
+		>;
+	};
+
+	ehrpwm1b_pins: pinmux_ehrpwm1b_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE2) /* UART3_RTSN.ehrpwm1B */
+		>;
+	};
+
+	ehrpwm2a_pins: pinmux_ehrpwm2a_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE3) /* GPIO2_6.ehrpwm2A */
+		>;
+	};
+
+	ehrpwm2b_pins: pinmux_ehrpwm2b_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE3) /* GPIO2_7.ehrpwm2B */
+		>;
+	};
 };
 
 &rtc {
 	system-power-controller;
+};
+
+&epwmss0 {
+	status = "okay";
+
+	ehrpwm0: ehrpwm@48300200 {
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&ehrpwm0a_pins &ehrpwm0b_pins>;
+	};
+};
+
+&epwmss1 {
+	status = "okay";
+
+	ehrpwm1: ehrpwm@48302200 {
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&ehrpwm1a_pins &ehrpwm1b_pins>;
+	};
+};
+
+&epwmss2 {
+	status = "okay";
+
+	ehrpwm2: ehrpwm@48304200 {
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&ehrpwm2a_pins &ehrpwm2b_pins>;
+	};
 };
 
 &mcasp0	{
