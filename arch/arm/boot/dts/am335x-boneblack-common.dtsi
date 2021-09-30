@@ -3,6 +3,7 @@
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
 
+#include <dt-bindings/display/tda998x.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 
 &ldo3_reg {
