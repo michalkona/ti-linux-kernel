@@ -94,13 +94,6 @@
 	};
 };
 
-/* Disable the following nodes due to pin mux conflicts with
- * PRU Software UART signals
- */
-&tda19988 {
-	status = "disabled";
-};
-
 &mcasp0 {
 	status = "disabled";
 };
