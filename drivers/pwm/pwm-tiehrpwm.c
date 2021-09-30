@@ -91,6 +91,22 @@
 #define AQCSFRC_CSFA_FRCHIGH	BIT(1)
 #define AQCSFRC_CSFA_DISSWFRC	(BIT(1) | BIT(0))
 
+/* Dead Band generator module register */
+#define DBCTL			0x1e
+// MODE bits
+#define DB_DISABLE		0x0
+#define DBA_ENABLE		0x1
+#define DBB_ENABLE		0x2
+#define DB_FULL_ENABLE	0x3
+// POLSEL bits
+#define DB_ACTV_HI		0x0
+#define DB_ACTV_LOC		0x1
+#define DB_ACTV_HIC		0x2
+#define DB_ACTV_LO		0x3
+
+#define DBRED			0x20
+#define DBFED			0x22
+
 #define NUM_PWM_CHANNEL		2	/* EHRPWM channels */
 
 struct ehrpwm_context {
@@ -285,6 +301,10 @@ static int ehrpwm_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
 	ehrpwm_modify(pc->mmio_base, TBCTL, TBCTL_PRDLD_MASK, TBCTL_PRDLD_SHDW);
 
 	ehrpwm_write(pc->mmio_base, TBPRD, period_cycles);
+	//Active High Complementary S5 = 0, S4 = 0, S3 = 0, S2 = 1, S1 = 1, S0 = 1
+	ehrpwm_write(pc->mmio_base, DBCTL, 0x7);
+	ehrpwm_write(pc->mmio_base, DBRED, 6);
+	ehrpwm_write(pc->mmio_base, DBFED, 6);
 
 	/* Configure ehrpwm counter for up-count mode */
 	ehrpwm_modify(pc->mmio_base, TBCTL, TBCTL_CTRMODE_MASK,
