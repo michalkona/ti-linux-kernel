@@ -80,7 +80,7 @@
 &epwmss0 {
 	status = "okay";
 
-	ehrpwm0: ehrpwm@48300200 {
+	ehrpwm0: pwm@200 {
 		status = "okay";
 		pinctrl-names = "default";
 		pinctrl-0 = <&ehrpwm0a_pins &ehrpwm0b_pins>;
@@ -90,7 +90,7 @@
 &epwmss1 {
 	status = "okay";
 
-	ehrpwm1: ehrpwm@48302200 {
+	ehrpwm1: pwm@200 {
 		status = "okay";
 		pinctrl-names = "default";
 		pinctrl-0 = <&ehrpwm1a_pins &ehrpwm1b_pins>;
@@ -100,7 +100,7 @@
 &epwmss2 {
 	status = "okay";
 
-	ehrpwm2: ehrpwm@48304200 {
+	ehrpwm2: pwm@200 {
 		status = "okay";
 		pinctrl-names = "default";
 		pinctrl-0 = <&ehrpwm2a_pins &ehrpwm2b_pins>;
