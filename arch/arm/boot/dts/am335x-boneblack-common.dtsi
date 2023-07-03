@@ -107,6 +107,10 @@
 	};
 };
 
+&tps {
+	/delete-property/ ti,pmic-shutdown-controller;
+};
+
 &tscadc {
 	status = "okay";
 };
